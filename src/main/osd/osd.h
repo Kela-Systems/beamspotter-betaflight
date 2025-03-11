@@ -194,6 +194,7 @@ typedef enum {
     OSD_CUSTOM_MSG1,
     OSD_CUSTOM_MSG2,
     OSD_CUSTOM_MSG3,
+    OSD_BEAMSPOTTER_CROSSHAIRS,
     OSD_ITEM_COUNT // MUST BE LAST
 } osd_items_e;
 

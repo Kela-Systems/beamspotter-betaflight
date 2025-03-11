@@ -689,3 +689,7 @@ extern uint8_t __config_end;
 #define USE_PIN_PULL_UP_DOWN
 #endif
 #endif // USE_PINIO
+
+#ifdef USE_KELA
+#define USE_BEAMSPOTTER
+#endif

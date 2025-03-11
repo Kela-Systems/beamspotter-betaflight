@@ -58,6 +58,8 @@
 // Protocol numbers used both by the wire format, config system, and field setters.
 #define MSP_PROTOCOL_VERSION                0
 
+// TODO: UPDATE API VERSION according to requirements, specified above.
+
 #define API_VERSION_MAJOR                   1
 #define API_VERSION_MINOR                   47
 #define API_VERSION_LENGTH                  2
@@ -230,6 +232,12 @@
 #define MSP_TX_INFO                     187  // out message: Get runtime information for TX lua scripts
 #define MSP_SET_OSD_CANVAS              188  // in message:  Set OSD canvas size COLSxROWS
 #define MSP_OSD_CANVAS                  189  // out message: Get OSD canvas size COLSxROWS
+
+// Kela specific commands (195-199)
+#define MSP_BEAMSPOTTER_GET_CONFIG      195
+#define MSP_BEAMSPOTTER_SET_CONFIG      196
+#define MSP_BEAMSPOTTER_GET_FIX         197
+#define MSP_BEAMSPOTTER_ECHO_TEST       198
 
 // Set commands (200-229)
 #define MSP_SET_RAW_RC                  200  // in message:  8 rc chan
