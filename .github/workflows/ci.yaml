@@ -24,7 +24,7 @@ jobs:
       run: make IFLIGHT_BLITZ_F435
     
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: firmware
         path: |
