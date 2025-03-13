@@ -40,7 +40,7 @@ typedef struct beamspotter_s {
     bool hasFix;
     beamspotterCoordinates_t coordinates;    // X,Y coordinates of the laser beam position
     timeMs_t lastUpdateMs;                 // Time of last successful update
-    BeamSpotterStatus_t lastStatus;        // Last status code from the sensor
+    BeamspotterStatus_t lastStatus;        // Last status code from the sensor
     beamspotterConfig_t config;            // Configuration
 } beamspotter_t;
 

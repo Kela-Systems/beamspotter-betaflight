@@ -1807,11 +1807,19 @@ static void osdElementBeamspotterCrosshairs(osdElementParms_t *element)
 {
     UNUSED(element);
 
+    element->buff[0] = SYM_AH_CENTER_LINE;
+    element->buff[1] = SYM_AH_CENTER;
+    element->buff[2] = SYM_AH_CENTER_LINE_RIGHT;
+    element->buff[3] = 0;
+
     beamspotterCoordinates_t coordinates;
     if (beamspotterGetCoordinates(&coordinates)) {
-        tfp_sprintf(element->buff, "BEAMSPOTTER %02d %02d", coordinates.x, coordinates.y);
+        // Change position of the beamspotter crosshairs according to coordinates
+        element->elemPosX = coordinates.x;
+        element->elemPosY = coordinates.y;
     } else {
-        tfp_sprintf(element->buff, "BEAMSPOTTER X");
+        element->elemPosX = 0;
+        element->elemPosY = 0;
     }
 }
 #endif

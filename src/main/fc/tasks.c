@@ -345,7 +345,7 @@ static void taskBeamspotter(timeUs_t currentTimeUs)
 {
     UNUSED(currentTimeUs);
 
-    // beamspotterProcess();
+    beamspotterProcess();
 }
 #endif
 
@@ -684,5 +684,9 @@ void tasksInit(void)
 
 #ifdef USE_GIMBAL
     setTaskEnabled(TASK_GIMBAL, true);
+#endif
+
+#ifdef USE_BEAMSPOTTER
+    setTaskEnabled(TASK_BEAMSPOTTER, true);
 #endif
 }

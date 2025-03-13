@@ -99,7 +99,7 @@ bool sensorsAutodetect(void)
 #endif
 
 #ifdef USE_BEAMSPOTTER
-    // beamspotterInit();
+    beamspotterInit();
 #endif
 
     return gyroDetected;

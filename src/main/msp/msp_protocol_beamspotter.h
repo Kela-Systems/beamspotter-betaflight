@@ -10,7 +10,7 @@ typedef enum {
     MSP_BEAMSPOTTER_SET_CONFIG = 196,
     MSP_BEAMSPOTTER_GET_FIX = 197,
     MSP_BEAMSPOTTER_ECHO_TEST = 198
-} MspBeamSpotterCommandID_t;
+} mspBeamspotterCommandID_t;
 
 // Configuration limits
 
@@ -24,7 +24,7 @@ typedef enum {
     BEAMSPOTTER_STATUS_INVALID_FREQUENCY = 1,
     BEAMSPOTTER_STATUS_HARDWARE_ERR = 2,
     BEAMSPOTTER_STATUS_TIMEOUT = 3
-} BeamSpotterStatus_t;
+} BeamspotterStatus_t;
 
 // Message structures
 
@@ -32,23 +32,23 @@ typedef enum {
 
 // GET_CONFIG request payload
 typedef struct {
-} BeamSpotterGetConfigRequest_t;
+} BeamspotterGetConfigRequest_t;
 
 // GET_CONFIG response payload
 typedef struct {
     uint8_t status;    // 0: Success, >0: Error code
     uint8_t frequency; // Update frequency in Hz (1-100)
-} BeamSpotterConfigResponse_t;
+} BeamspotterConfigResponse_t;
 
 // SET_CONFIG request payload
 typedef struct {
     uint8_t frequency; // Update frequency in Hz (1-100)
-} BeamSpotterSetConfigRequest_t;
+} BeamspotterSetConfigRequest_t;
 
 // SET_CONFIG response payload
 typedef struct {
     uint8_t status;    // 0: Success, >0: Error code
-} BeamSpotterSetConfigResponse_t;
+} BeamspotterSetConfigResponse_t;
 
 // GET_FIX response payload
 typedef struct {
@@ -56,18 +56,18 @@ typedef struct {
     uint8_t hasFix;    // 0: No fix, 1: Fix acquired
     uint32_t x;           // X coordinate of the laser beam position
     uint32_t y;           // Y coordinate of the laser beam position
-} BeamSpotterFixResponse_t;
+} BeamspotterFixResponse_t;
 
 // ECHO_TEST request/response payload
 typedef struct {
     uint8_t size;     // Size of data to echo (1-32 bytes)
     uint8_t data[32]; // Data to be echoed
-} BeamSpotterEchoRequest_t;
+} BeamspotterEchoRequest_t;
 
 typedef struct {
     uint8_t status;   // 0: Success, >0: Error code
     uint8_t size;     // Size of echoed data (1-32 bytes)
     uint8_t data[32]; // Echoed data
-} BeamSpotterEchoResponse_t;
+} BeamspotterEchoResponse_t;
 
 #pragma pack(pop)
