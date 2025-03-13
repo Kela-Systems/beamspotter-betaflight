@@ -1662,9 +1662,13 @@ const clivalue_t valueTable[] = {
     { "osd_canvas_height",          VAR_UINT8  | MASTER_VALUE, .config.minmaxUnsigned = { 0, 31 }, PG_OSD_CONFIG, offsetof(osdConfig_t, canvas_rows) },
 #endif
 #ifdef USE_CRAFTNAME_MSGS
-    { "osd_craftname_msgs",   VAR_UINT8  | MASTER_VALUE | MODE_LOOKUP, .config.lookup = { TABLE_OFF_ON }, PG_OSD_CONFIG, offsetof(osdConfig_t, osd_craftname_msgs) },
+    { "osd_craftname_msgs",         VAR_UINT8  | MASTER_VALUE | MODE_LOOKUP, .config.lookup = { TABLE_OFF_ON }, PG_OSD_CONFIG, offsetof(osdConfig_t, osd_craftname_msgs) },
 #endif //USE_CRAFTNAME_MSGS
 #endif // end of #ifdef USE_OSD
+
+#ifdef USE_BEAMSPOTTER
+    { "osd_beamspotter_crosshairs_pos",    VAR_UINT16 | MASTER_VALUE, .config.minmaxUnsigned = { 0, OSD_POSCFG_MAX }, PG_OSD_ELEMENT_CONFIG, offsetof(osdElementConfig_t, item_pos[OSD_BEAMSPOTTER_CROSSHAIRS]) },
+#endif
 
 // PG_SYSTEM_CONFIG
 #if defined(STM32F4) || defined(STM32G4) || defined(APM32F4)

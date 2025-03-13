@@ -192,6 +192,10 @@ typedef enum {
     TASK_GIMBAL,
 #endif
 
+#ifdef USE_BEAMSPOTTER
+    TASK_BEAMSPOTTER,
+#endif
+
     /* Count of real tasks */
     TASK_COUNT,
 

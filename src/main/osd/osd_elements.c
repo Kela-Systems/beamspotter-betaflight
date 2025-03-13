@@ -170,6 +170,7 @@
 #include "sensors/barometer.h"
 #include "sensors/battery.h"
 #include "sensors/sensors.h"
+#include "sensors/beamspotter.h"
 
 #ifdef USE_GPS_PLUS_CODES
 // located in lib/main/google/olc
@@ -1800,6 +1801,29 @@ static void osdElementSys(osdElementParms_t *element)
 }
 #endif
 
+#ifdef USE_BEAMSPOTTER
+// TODO: Use the crosshairs symbol instead of the text.
+static void osdElementBeamspotterCrosshairs(osdElementParms_t *element)
+{
+    UNUSED(element);
+
+    element->buff[0] = SYM_AH_CENTER_LINE;
+    element->buff[1] = SYM_AH_CENTER;
+    element->buff[2] = SYM_AH_CENTER_LINE_RIGHT;
+    element->buff[3] = 0;
+
+    beamspotterCoordinates_t coordinates;
+    if (beamspotterGetCoordinates(&coordinates)) {
+        // Change position of the beamspotter crosshairs according to coordinates
+        element->elemPosX = coordinates.x;
+        element->elemPosY = coordinates.y;
+    } else {
+        element->elemPosX = 0;
+        element->elemPosY = 0;
+    }
+}
+#endif
+
 // Define the order in which the elements are drawn.
 // Elements positioned later in the list will overlay the earlier
 // ones if their character positions overlap
@@ -1810,6 +1834,9 @@ static const uint8_t osdElementDisplayOrder[] = {
     OSD_MAIN_BATT_VOLTAGE,
     OSD_RSSI_VALUE,
     OSD_CROSSHAIRS,
+#ifdef USE_BEAMSPOTTER
+    OSD_BEAMSPOTTER_CROSSHAIRS,
+#endif
     OSD_HORIZON_SIDEBARS,
     OSD_UP_DOWN_REFERENCE,
     OSD_ITEM_TIMER_1,
@@ -2049,6 +2076,10 @@ const osdElementDrawFn osdElementDrawFunction[OSD_ITEM_COUNT] = {
     [OSD_SYS_WARNINGS]            = osdElementSys,
     [OSD_SYS_VTX_TEMP]            = osdElementSys,
     [OSD_SYS_FAN_SPEED]           = osdElementSys,
+#endif
+
+#ifdef USE_BEAMSPOTTER
+    [OSD_BEAMSPOTTER_CROSSHAIRS]  = osdElementBeamspotterCrosshairs,
 #endif
 };
 

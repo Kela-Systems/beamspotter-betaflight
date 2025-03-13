@@ -99,6 +99,7 @@
 #include "sensors/sensors.h"
 #include "sensors/rangefinder.h"
 #include "sensors/opticalflow.h"
+#include "sensors/beamspotter.h"
 
 #include "telemetry/telemetry.h"
 #include "telemetry/crsf.h"
@@ -339,6 +340,15 @@ static void taskCameraControl(uint32_t currentTime)
 }
 #endif
 
+#ifdef USE_BEAMSPOTTER
+static void taskBeamspotter(timeUs_t currentTimeUs)
+{
+    UNUSED(currentTimeUs);
+
+    beamspotterProcess();
+}
+#endif
+
 #define DEFINE_TASK(taskNameParam, subTaskNameParam, checkFuncParam, taskFuncParam, desiredPeriodParam, staticPriorityParam) {  \
     .taskName = taskNameParam, \
     .subTaskName = subTaskNameParam, \
@@ -477,6 +487,10 @@ task_attribute_t task_attributes[TASK_COUNT] = {
 
 #ifdef USE_GIMBAL
     [TASK_GIMBAL] = DEFINE_TASK("GIMBAL", NULL, NULL, gimbalUpdate, TASK_PERIOD_HZ(100), TASK_PRIORITY_MEDIUM),
+#endif
+
+#ifdef USE_BEAMSPOTTER
+    [TASK_BEAMSPOTTER] = DEFINE_TASK("BEAMSPOTTER", NULL, NULL, taskBeamspotter, TASK_PERIOD_HZ(BEAMSPOTTER_TASK_SCHEDULE_RATE_HZ), TASK_PRIORITY_MEDIUM),
 #endif
 };
 
@@ -670,5 +684,9 @@ void tasksInit(void)
 
 #ifdef USE_GIMBAL
     setTaskEnabled(TASK_GIMBAL, true);
+#endif
+
+#ifdef USE_BEAMSPOTTER
+    setTaskEnabled(TASK_BEAMSPOTTER, true);
 #endif
 }

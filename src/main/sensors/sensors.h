@@ -27,6 +27,7 @@ typedef enum {
     SENSOR_INDEX_MAG,
     SENSOR_INDEX_RANGEFINDER,
     SENSOR_INDEX_OPTICALFLOW,
+    SENSOR_INDEX_BEAMSPOTTER,
     SENSOR_INDEX_COUNT
 } sensorIndex_e;
 
@@ -54,5 +55,6 @@ typedef enum {
     SENSOR_RANGEFINDER = 1 << 4,
     SENSOR_GPS = 1 << 5,
     SENSOR_GPSMAG = 1 << 6,
-    SENSOR_OPTICALFLOW = 1 << 7
+    SENSOR_OPTICALFLOW = 1 << 7,
+    SENSOR_BEAMSPOTTER = 1 << 8
 } sensors_e;
